@@ -35,7 +35,7 @@ FoodRouter.delete("/:id", async (req, res) => {
     const foodDeleted = await Food.findByIdAndDelete(foodId);
 
     if (!foodDeleted) {
-      res.status(404).json({ error: "Could not find the food item" });
+      res.status(404).json({ message: "Could not find the food item" });
     } else {
       res.status(200).json({ message: "Deleted food item successfully" });
     }
