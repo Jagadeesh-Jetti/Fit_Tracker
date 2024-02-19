@@ -20,12 +20,11 @@ const exerciseSchema = new mongoose.Schema(
           dancing: 7,
           yoga: 3,
           cycling: 8,
-          dancing: 7,
         };
         const exerciseType = this.name.toLowerCase();
         const caloriesPerMinuteForExercise =
           caloriesPerMinute[exerciseType] || 5;
-        return (this.duration = caloriesPerMinuteForExercise);
+        return this.duration * caloriesPerMinuteForExercise;
       },
     },
   },
@@ -34,6 +33,6 @@ const exerciseSchema = new mongoose.Schema(
   }
 );
 
-const Exercise = mongoose.Model("Exercise", exerciseSchema);
+const Exercise = mongoose.model("Exercise", exerciseSchema);
 
 module.exports = Exercise;
