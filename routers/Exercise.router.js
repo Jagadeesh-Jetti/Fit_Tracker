@@ -32,14 +32,13 @@ ExerciseRouter.post("/", async (req, res) => {
 ExerciseRouter.delete("/:id", async (req, res) => {
   try {
     const exerciseId = req.params.id;
-
     const exerciseDeleted = await Exercise.findByIdAndDelete(exerciseId);
+
     if (!exerciseDeleted) {
-      res
-        .status(404)
-        .json({ error: "Couldnt found the exercise in the db", error });
+      res.status(404).json({ error: "Couldn't find the exercise in the db" });
+    } else {
+      res.status(200).json({ message: "Deleting the exercise is successful" });
     }
-    res.status(201).json({ message: "Deleting the exercise is success" });
   } catch (error) {
     res.status(500).json({ error: "Error while deleting the exercise", error });
   }
