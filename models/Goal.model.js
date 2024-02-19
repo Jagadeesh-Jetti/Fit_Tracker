@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const goalSchema = new mongoose.Schema(
   {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
     description: String,
     targetDate: Date,
     calories: Number,
