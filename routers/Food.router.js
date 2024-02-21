@@ -1,7 +1,7 @@
 const express = require("express");
 
 const FoodRouter = express.Router();
-const { Food } = require("../models/Food.model");
+const Food = require("../models/Food.model");
 
 FoodRouter.get("/", async (req, res) => {
   try {
