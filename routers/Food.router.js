@@ -8,7 +8,7 @@ FoodRouter.get("/", async (req, res) => {
     const allFood = await Food.find();
     res
       .status(200)
-      .json({ message: "Fetching all food data is successful", allFood });
+      .json({ message: "Fetching all food data is successful", food: allFood });
   } catch (error) {
     res.status(500).json({ error: "Error while fetching food data" });
   }
@@ -22,7 +22,7 @@ FoodRouter.post("/", async (req, res) => {
     await foodAdded.save();
     res
       .status(201)
-      .json({ message: "Successfully added the food item", foodAdded });
+      .json({ message: "Successfully added the food item", food: foodAdded });
   } catch (error) {
     res.status(500).json({ error: "Error while adding the food item" });
   }
@@ -37,7 +37,10 @@ FoodRouter.delete("/:id", async (req, res) => {
     if (!foodDeleted) {
       res.status(404).json({ message: "Could not find the food item" });
     } else {
-      res.status(200).json({ message: "Deleted food item successfully" });
+      res.status(200).json({
+        message: "Deleted food item successfully",
+        deletedfood: foodDeleted,
+      });
     }
   } catch (error) {
     res.status(500).json({ error: "Error while deleting the food item" });
